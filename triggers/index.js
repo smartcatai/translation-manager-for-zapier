@@ -1,4 +1,4 @@
-const project = require('./project');
+const project = require('./completedProject');
 
 module.exports = {
     [project.key]: project
