@@ -22,7 +22,6 @@ module.exports = {
       {key: 'name', required: true, type: 'string', label: 'Name'},
       {key: 'sourceLanguage', required: true, type: 'string', label: 'Source Language'},
       {key: 'targetLanguages', required: true, type: 'string', label: 'Target Languages'},
-      {key: 'workflowStages', required: true, type: 'string', label: 'Workflow Stages'},
       {key: 'filename', required: true, type: 'string', label: 'Filename'},
       {key: 'file', required: true, type: 'file', label: 'File'},
 
@@ -44,7 +43,7 @@ module.exports = {
         workflowStages: [
           'translation'
         ],
-        isForTesting: true,
+        isForTesting: false,
         externalTag: 'source:Zapier',
       });
 
@@ -58,10 +57,10 @@ module.exports = {
       if(bundle.inputData.file){
         mp.addPart({
           headers:{
-            'Content-Disposition': `form-data; name="model"; filename="${bundle.inputData.file}"`,
+            'Content-Disposition': `form-data; name="file_"; filename="${bundle.inputData.filename}"`,
             'Content-Type':'application/octet-stream',
           },
-          body: bundle.inputData.file
+          body: request(bundle.inputData.file)
         })
       }
 
