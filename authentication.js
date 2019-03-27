@@ -11,6 +11,7 @@ const auth = {
       key: 'api_server',
       type: 'string',
       required: true,
+      choices: apiConst.servers,
       helpText: 'Server for connection'
     },
     {
