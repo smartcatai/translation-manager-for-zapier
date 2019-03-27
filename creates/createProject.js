@@ -1,7 +1,10 @@
 
 const request = require('request');
-const apiConst = require('../apiConst');
 const Multipart = require('multipart-stream')
+const apiConst = require('../apiConst');
+const langs = require('../langs.json');
+
+sourceLangs = langs.reduce((langs, lang) => { langs[lang.key] = lang.label; return langs },{})
 
 // We recommend writing your creates separate like this and rolling them
 // into the App definition at the end.
@@ -20,8 +23,9 @@ module.exports = {
   operation: {
     inputFields: [
       {key: 'name', required: true, type: 'string', label: 'Name'},
-      {key: 'sourceLanguage', required: true, type: 'string', label: 'Source Language'},
-      {key: 'targetLanguages', required: true, type: 'string', label: 'Target Languages'},
+      {key: 'sourceLanguage', choices: sourceLangs, required: true, type: 'string', label: 'Source Language'},
+      {key: 'targetLanguages', choices: sourceLangs, required: true, type: 'string', label: 'Target Languages'},
+      {key: 'workflowStages', choices: apiConst.workflowStages, required: true, list: true, type: 'string', label: 'Workflow Stages'},
       {key: 'filename', required: true, type: 'string', label: 'Filename'},
       {key: 'file', required: true, type: 'file', label: 'File'},
 
@@ -40,9 +44,7 @@ module.exports = {
         pretranslate: false,
         useTranslationMemory: false,
         autoPropagateRepetitions: false,
-        workflowStages: [
-          'translation'
-        ],
+        workflowStages: bundle.inputData.workflowStages,
         isForTesting: false,
         externalTag: 'source:Zapier',
       });
