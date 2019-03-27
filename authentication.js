@@ -1,7 +1,7 @@
 const apiConst = require('./apiConst');
 const auth = {
   type: 'custom',
-  connectionLabel: 'Basic Smartcat',
+  connectionLabel: 'Basic {{bundle.authData.api_login}}',
   test: {
     url:
       'https://{{bundle.authData.api_server}}'+ apiConst.routes.account,
