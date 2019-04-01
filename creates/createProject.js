@@ -6,6 +6,18 @@ const langs = require('../langs.json');
 
 sourceLangs = langs.reduce((langs, lang) => { langs[lang.key] = lang.label; return langs },{})
 
+const vendor = (z, bundle) => {
+  const response = z.request(`https://${bundle.authData.api_server}${apiConst.routes.vendors}`);
+  // json is is [{"key":"field_1"},{"key":"field_2"}]
+  return response
+    .then(res => res.json)
+    .then(res => res.items.reduce(
+      (vendors, vendor )=>{vendors[vendor.id]=vendor.name; return vendors },
+      {}
+      ))
+    .then(vendors => { return {key: 'vendor', choices: vendors, required: true, type: 'string', label: 'Vendor'}});
+};
+
 // We recommend writing your creates separate like this and rolling them
 // into the App definition at the end.
 module.exports = {
@@ -24,7 +36,8 @@ module.exports = {
     inputFields: [
       {key: 'name', required: true, type: 'string', label: 'Name'},
       {key: 'sourceLanguage', choices: sourceLangs, required: true, type: 'string', label: 'Source Language'},
-      {key: 'targetLanguages', choices: sourceLangs, required: true, type: 'string', label: 'Target Languages'},
+      {key: 'targetLanguages', choices: sourceLangs, required: true, list: true, type: 'string', label: 'Target Languages'},
+      vendor,
       {key: 'workflowStages', choices: apiConst.workflowStages, required: true, list: true, type: 'string', label: 'Workflow Stages'},
       {key: 'filename', required: true, type: 'string', label: 'Filename'},
       {key: 'file', required: true, type: 'file', label: 'File'},
@@ -36,10 +49,11 @@ module.exports = {
         name: bundle.inputData.name,
         description: 'test create projec for zapier',
         sourceLanguage: bundle.inputData.sourceLanguage,
-        targetLanguages: [
-          bundle.inputData.targetLanguages
+        targetLanguages: bundle.inputData.targetLanguages,
+        vendorAccountIds: [
+          bundle.inputData.vendor
         ],
-        assignToVendor: false,
+        assignToVendor: true,
         useMT: false,
         pretranslate: false,
         useTranslationMemory: false,
