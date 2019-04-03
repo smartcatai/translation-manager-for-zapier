@@ -4,6 +4,7 @@ const routes = {
     "project": "/api/integration/v1/project",
     "createExport": "/api/integration/v1/document/export",
     "vendors": "/api/integration/v1/directory?type=vendor",
+    "callback": "/api/integration/v1/callback"
 }
 const servers = {
     "usa" : "us.smartcat.ai",

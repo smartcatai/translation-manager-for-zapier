@@ -26,7 +26,7 @@ module.exports = {
         queryParams += `documentIds[]=${bundle.inputData.documentIds}`;
       }
 
-      url = `https://${bundle.authData.api_server}${apiConst.routes.createExport}${queryParams}`;
+      url = `https://${apiConst.servers[bundle.authData.api_server]}${apiConst.routes.createExport}${queryParams}`;
 
       const promise = z.request({
         url: url,

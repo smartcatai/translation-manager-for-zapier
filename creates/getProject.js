@@ -10,7 +10,7 @@ const project = (z, bundle) => {
   // You can build requests and our client will helpfully inject all the variables
   // you need to complete. You can also register middleware to control this.
   const requestOptions = {
-    url: `https://${bundle.authData.api_server}${apiConst.routes.project}/${projectId}`,
+    url: `https://${apiConst.servers[bundle.authData.api_server]}${apiConst.routes.project}/${projectId}`,
   };
 
   // You may return a promise or a normal data structure from any perform method.

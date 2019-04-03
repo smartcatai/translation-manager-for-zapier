@@ -7,7 +7,7 @@ const langs = require('../langs.json');
 sourceLangs = langs.reduce((langs, lang) => { langs[lang.key] = lang.label; return langs },{})
 
 const vendor = (z, bundle) => {
-  const response = z.request(`https://${bundle.authData.api_server}${apiConst.routes.vendors}`);
+  const response = z.request(`https://${apiConst.servers[bundle.authData.api_server]}${apiConst.routes.vendors}`);
   // json is is [{"key":"field_1"},{"key":"field_2"}]
   return response
     .then(res => res.json)
@@ -15,7 +15,7 @@ const vendor = (z, bundle) => {
       (vendors, vendor )=>{vendors[vendor.id]=vendor.name; return vendors },
       {}
       ))
-    .then(vendors => { return {key: 'vendor', choices: vendors, required: true, type: 'string', label: 'Vendor'}});
+    .then(vendors => { return {key: 'vendor', choices: vendors, required: false, type: 'string', label: 'Vendor'}});
 };
 
 // We recommend writing your creates separate like this and rolling them
@@ -45,15 +45,12 @@ module.exports = {
     ],
     perform: (z, bundle) => {
       const mp = new Multipart();
-      const model = z.JSON.stringify({
+      const model = {
         name: bundle.inputData.name,
         description: 'test create projec for zapier',
         sourceLanguage: bundle.inputData.sourceLanguage,
         targetLanguages: bundle.inputData.targetLanguages,
-        vendorAccountIds: [
-          bundle.inputData.vendor
-        ],
-        assignToVendor: true,
+        assignToVendor :false,
         useMT: false,
         pretranslate: false,
         useTranslationMemory: false,
@@ -61,14 +58,21 @@ module.exports = {
         workflowStages: bundle.inputData.workflowStages,
         isForTesting: false,
         externalTag: 'source:Zapier',
-      });
+      };
+
+      if(bundle.inputData.vendor){
+        model.vendorAccountIds = [
+          bundle.inputData.vendor
+        ];
+        model.assignToVendor = true;
+      }
 
       mp.addPart({
         headers:{
           'Content-Disposition': 'form-data; name="model"',
           'Content-Type':'application/json',
         },
-        body: model
+        body: z.JSON.stringify(model)
       })
       if(bundle.inputData.file){
         mp.addPart({
@@ -81,7 +85,7 @@ module.exports = {
       }
 
       const promise = z.request({
-        url: `https://${bundle.authData.api_server}${apiConst.routes.createProject}`,
+        url: `https://${apiConst.servers[bundle.authData.api_server]}${apiConst.routes.createProject}`,
         method: 'POST',
         body: mp,
         headers: {

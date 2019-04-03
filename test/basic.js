@@ -12,7 +12,7 @@ describe('basic auth app', () => {
     // Try changing the values of username or password to see how the test method behaves
     const bundle = {
       authData: {
-        api_server: apiConst.servers.europe,
+        api_server: 'europe',
         username: 'user',
         password: 'badpwd'
       }
@@ -33,7 +33,7 @@ describe('basic auth app', () => {
     // Try changing the values of username or password to see how the test method behaves
     const bundle = {
       authData: {
-        api_server: apiConst.servers.europe,
+        api_server: 'europe',
         api_login: '40c7d5b2-da26-4b36-84f1-8305b3aadb03',
         api_password: '32_xBrADOZXaB1B1JznYw0GAe8rw'
       }

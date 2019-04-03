@@ -1,11 +1,20 @@
 const apiConst = require('./apiConst');
+
+const test = (z , bundle) => {
+  return z.request({
+      url: `https://${apiConst.servers[bundle.authData.api_server]}${apiConst.routes.account}`,
+    }).then((response) => {
+      if (response.status === 401) {
+        throw new Error('The username and/or password you supplied is incorrect');
+      }
+      return z.JSON.parse(response.content);
+    });
+};
+
 const auth = {
   type: 'custom',
   connectionLabel: 'Basic {{bundle.authData.api_login}}',
-  test: {
-    url:
-      'https://{{bundle.authData.api_server}}'+ apiConst.routes.account,
-  },
+  test: test,
   fields: [
     {
       key: 'api_server',

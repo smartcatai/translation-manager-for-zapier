@@ -14,7 +14,7 @@ describe('creates', () => {
     it('should create a new project', (done) => {
       const bundle = {
         authData: {
-          api_server: apiConst.servers.europe,
+          api_server: 'europe',
           api_login: '40c7d5b2-da26-4b36-84f1-8305b3aadb03',
           api_password: '32_xBrADOZXaB1B1JznYw0GAe8rw'
         },
@@ -42,7 +42,7 @@ describe('creates', () => {
     it('should load project', (done) => {
         const bundle = {
           authData: {
-            api_server: apiConst.servers.europe,
+            api_server: 'europe',
             api_login: '40c7d5b2-da26-4b36-84f1-8305b3aadb03',
             api_password: '32_xBrADOZXaB1B1JznYw0GAe8rw'
           },
@@ -65,7 +65,7 @@ describe('creates', () => {
     it('should load export', (done) => {
         const bundle = {
           authData: {
-            api_server: apiConst.servers.europe,
+            api_server: 'europe',
             api_login: '40c7d5b2-da26-4b36-84f1-8305b3aadb03',
             api_password: '32_xBrADOZXaB1B1JznYw0GAe8rw'
           },
