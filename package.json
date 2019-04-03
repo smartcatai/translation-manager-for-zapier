@@ -1,8 +1,8 @@
 {
-  "name": "zapier-platform-smartcat-app",
+  "name": "translation-manager-for-zapier",
   "version": "1.0.0",
-  "description": "An smartcat translation manager app for the Zapier platform.",
-  "repository": "smartcatai/zapier-platform-smartcat-app",
+  "description": "A Smartcat translation manager app for the Zapier platform.",
+  "repository": "smartcatai/translation-manager-for-zapier",
   "homepage": "https://zapier.com/",
   "author": "Larion Turlo <larion.turlo@simbirsoft.com>",
   "license": "BSD-3-Clause",
