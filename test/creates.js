@@ -8,8 +8,6 @@ const appTester = zapier.createAppTester(App);
 
 describe('creates', () => {
 
-  let _projectId = 0;
-
   describe('create project create', () => {
     it('should create a new project', (done) => {
       const bundle = {
@@ -33,29 +31,6 @@ describe('creates', () => {
           should(result).have.property('name');
           _projectId = result.id;
           done();
-        })
-        .catch(done);
-    });
-  });
-
-  describe('get project action', () => {
-    it('should load project', (done) => {
-        const bundle = {
-          authData: {
-            api_server: 'europe',
-            api_login: '40c7d5b2-da26-4b36-84f1-8305b3aadb03',
-            api_password: '32_xBrADOZXaB1B1JznYw0GAe8rw'
-          },
-          inputData: {
-            projectId: _projectId
-          }
-        };
-
-        appTester(App.creates.get_project.operation.perform, bundle)
-        .then(result => {
-            should(result.name).eql('Smith Family project');
-
-            done();
         })
         .catch(done);
     });
