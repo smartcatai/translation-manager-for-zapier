@@ -13,7 +13,7 @@ const test = (z , bundle) => {
 
 const auth = {
   type: 'custom',
-  connectionLabel: 'Basic {{bundle.authData.api_login}}',
+  connectionLabel: 'Basic {{name}}({{bundle.authData.api_login}})',
   test: test,
   fields: [
     {
