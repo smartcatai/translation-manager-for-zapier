@@ -40,14 +40,15 @@ module.exports = {
       vendor,
       {key: 'workflowStages', choices: apiConst.workflowStages, required: true, list: true, type: 'string', label: 'Workflow Stages'},
       {key: 'filename', required: true, type: 'string', label: 'Filename'},
-      {key: 'file', required: true, type: 'file', label: 'File'},
+      {key: 'file', required: true, list: true, type: 'file', label: 'File'},
+      {key: 'description', required: false, type: 'sting', label: 'Description'},
 
     ],
     perform: (z, bundle) => {
       const mp = new Multipart();
       const model = {
         name: bundle.inputData.name,
-        description: 'test create projec for zapier',
+        description: bundle.inputData.description || 'project from zapier',
         sourceLanguage: bundle.inputData.sourceLanguage,
         targetLanguages: bundle.inputData.targetLanguages,
         assignToVendor :false,
