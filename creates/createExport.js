@@ -11,13 +11,13 @@ module.exports = {
   noun: 'Export',
   display: {
     label: 'Create Export',
-    description: 'Creates a new Export.'
+    description: 'Creates a new Export(work only with completed project trigger)'
   },
 
   // `operation` is where the business logic goes.
   operation: {
     inputFields: [
-      {key: 'documentIds', required: true, type: 'string', label: 'Ids document for export'},
+      {key: 'documentIds', required: true, type: 'string', label: 'Ids document for export(select document id from trigger output)'},
     ],
     perform: (z, bundle) => {
 
