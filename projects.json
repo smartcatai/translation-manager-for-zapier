@@ -1,0 +1,49 @@
+[
+    {
+        "id": "4d908357-34a2-4503-88c8-ce857b46fc75",
+        "name": "Smith Family project",
+        "description": "test create projec for zapier",
+        "creationDate": "2019-03-25T04:34:15.803Z",
+        "modificationDate": "2019-03-25T04:34:15.803Z",
+        "sourceLanguage": "ru",
+        "targetLanguages": [
+            "en"
+        ],
+        "status": "completed",
+        "statusModificationDate": "2019-03-25T04:35:24.17Z",
+        "vendors": [],
+        "workflowStages": [
+            {
+            "progress": 100,
+            "stageType": "translation"
+            }
+        ],
+        "documents": [
+            {
+            "id": "a882f5712d0c9d1bb54f2504_9",
+            "name": "test_document",
+            "creationDate": "2019-03-25T04:34:15.819Z",
+            "sourceLanguage": "ru",
+            "documentDisassemblingStatus": "success",
+            "targetLanguage": "en",
+            "status": "completed",
+            "wordsCount": 6,
+            "statusModificationDate": "2019-03-25T04:35:24.157Z",
+            "pretranslateCompleted": false,
+            "workflowStages": [
+                {
+                "progress": 100,
+                "wordsTranslated": 6,
+                "unassignedWordsCount": 6,
+                "status": "completed",
+                "executives": []
+                }
+            ],
+            "externalId": "a882f5712d0c9d1bb54f2504",
+            "placeholdersAreEnabled": false
+            }
+        ],
+        "externalTag": "source:Zapier",
+        "specializations": []
+    }
+]

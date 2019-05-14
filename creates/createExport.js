@@ -11,7 +11,7 @@ module.exports = {
   noun: 'Export',
   display: {
     label: 'Create Export',
-    description: 'Creates a new Export(work only with completed project trigger)'
+    description: 'Creates a new Export(should be work with completed project trigger)'
   },
 
   // `operation` is where the business logic goes.

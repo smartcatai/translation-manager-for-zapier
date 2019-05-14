@@ -1,4 +1,5 @@
 const apiConst = require('../apiConst');
+const projectsDefault = require('../projects.json');
 
 const listProject = (z, bundle) => {
 
@@ -18,9 +19,13 @@ const listProject = (z, bundle) => {
     .then((response) => {
       const projects = z.JSON.parse(response.content);
 
-      return projects.filter((project) => {
-        return project.status === 'completed';
-      });
+      if (projects) {
+        return projects.filter((project) => {
+          return project.status === 'completed';
+        });
+      }
+
+      return projectsDefault;
     });
 };
 
