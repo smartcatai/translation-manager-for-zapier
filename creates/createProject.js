@@ -41,7 +41,7 @@ module.exports = {
       {key: 'workflowStages', choices: apiConst.workflowStages, required: true, list: true, type: 'string', label: 'Workflow Stages'},
       {key: 'filename', required: true, type: 'string', label: 'Filename'},
       {key: 'file', required: true, list: true, type: 'file', label: 'File'},
-      {key: 'description', required: false, type: 'sting', label: 'Description'},
+      {key: 'description', required: false, type: 'string', label: 'Description'},
 
     ],
     perform: (z, bundle) => {

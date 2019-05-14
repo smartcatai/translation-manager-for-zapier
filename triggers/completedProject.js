@@ -36,7 +36,7 @@ module.exports = {
   operation: {
 
     inputFields: [
-      {key: 'projectName', type: 'string',  helpText: 'Enter project name', required: false}
+      {key: 'projectName', type: 'string',  helpText: 'Enter project name(if you really know that project exist)', required: false}
     ],
 
     perform: listProject,
