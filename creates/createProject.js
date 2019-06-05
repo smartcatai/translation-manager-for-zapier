@@ -94,14 +94,6 @@ module.exports = {
           'Accept': 'application/json'
         }
       });
-      /*
-      {
-          name: bundle.inputData.name,
-          directions: bundle.inputData.directions,
-          authorId: bundle.inputData.authorId,
-          style: bundle.inputData.style,
-        }
-      */
 
       return promise.then((response) => JSON.parse(response.content));
     },

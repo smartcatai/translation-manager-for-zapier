@@ -18,14 +18,19 @@ const listProject = (z, bundle) => {
   return z.request(requestOptions)
     .then((response) => {
       const projects = z.JSON.parse(response.content);
+      const compleatedProjects = projectsDefault;
 
       if (projects) {
-        return projects.filter((project) => {
+        compleatedProjects = projects.filter((project) => {
           return project.status === 'completed';
         });
       }
 
-      return projectsDefault;
+      if(compleatedProjects.length===0){
+        return projectsDefault
+      }
+
+      return compleatedProjects;
     });
 };
 

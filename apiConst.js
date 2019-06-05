@@ -3,6 +3,8 @@ const routes = {
     "createProject": "/api/integration/v1/project/create",
     "project": "/api/integration/v1/project",
     "createExport": "/api/integration/v1/document/export",
+    "addDocument": "/api/integration/v1/project/document",
+    "updateDocument": "/api/integration/v1/document/update",
     "vendors": "/api/integration/v1/directory?type=vendor",
     "callback": "/api/integration/v1/callback"
 }
@@ -17,8 +19,16 @@ const workflowStages = [
     "Proofreading",
 ]
 
+const documentType = {
+    "txt": "Plain text",
+    "json": "Json",
+    "html": "Plain text",
+    "po": "PO"
+}
+
 module.exports = {
     routes: routes,
     servers: servers,
-    workflowStages: workflowStages
+    workflowStages: workflowStages,
+    documentType: documentType,
 }
