@@ -19,7 +19,7 @@ describe('creates', () => {
         inputData: {
           name: 'Smith Family project',
           sourceLanguage: 'ru',
-          targetLanguages: 'en',
+          targetLanguages: ['en'],
           filename: 'test_document.html',
           file: 'http://108.61.99.140/test_document.html',
         }

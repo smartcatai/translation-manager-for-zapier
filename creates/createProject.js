@@ -40,15 +40,13 @@ module.exports = {
       vendor,
       {key: 'workflowStages', choices: apiConst.workflowStages, required: true, list: true, type: 'string', label: 'Workflow Stages'},
       {key: 'filename', required: true, type: 'string', label: 'Filename'},
-      {key: 'file', required: true, list: true, type: 'file', label: 'File'},
-      {key: 'description', required: false, type: 'string', label: 'Description'},
-
+      {key: 'file', required: true, type: 'file', label: 'File'},
     ],
     perform: (z, bundle) => {
       const mp = new Multipart();
       const model = {
         name: bundle.inputData.name,
-        description: bundle.inputData.description || 'project from zapier',
+        description: 'project from zapier',
         sourceLanguage: bundle.inputData.sourceLanguage,
         targetLanguages: bundle.inputData.targetLanguages,
         assignToVendor :false,
@@ -94,14 +92,14 @@ module.exports = {
           'Accept': 'application/json'
         }
       });
-      /*
-      {
-          name: bundle.inputData.name,
-          directions: bundle.inputData.directions,
-          authorId: bundle.inputData.authorId,
-          style: bundle.inputData.style,
+
+      promise.then((response) => {
+        if (response.status !== 200) {
+          z.console.log(`Error ${response.status}: response.content`);
+          return {};
         }
-      */
+        return z.JSON.parse(response.content)
+      })
 
       return promise.then((response) => JSON.parse(response.content));
     },

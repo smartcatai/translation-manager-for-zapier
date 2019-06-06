@@ -17,7 +17,7 @@
   "dependencies": {
     "multipart-stream": "^2.0.1",
     "request": "^2.88.0",
-    "zapier-platform-core": "8.0.1"
+    "zapier-platform-core": "8.1.0"
   },
   "devDependencies": {
     "mocha": "^5.2.0",
