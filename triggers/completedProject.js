@@ -1,14 +1,7 @@
 const apiConst = require('../apiConst');
 const projectsDefault = require('../projects.json');
 
-const listProject = (z, bundle) => {
-
-  let params = {
-    externalTag: 'source:Zapier',
-  };
-  if (bundle.inputData.projectName) {
-    params.projectName = bundle.inputData.projectName;
-  }
+const listProject = (z, bundle, params = {}) => {
 
   const requestOptions = {
     url: `https://${apiConst.servers[bundle.authData.api_server]}${apiConst.routes.project}/list`,
@@ -17,15 +10,38 @@ const listProject = (z, bundle) => {
 
   return z.request(requestOptions)
     .then((response) => {
-      const projects = z.JSON.parse(response.content);
+      return z.JSON.parse(response.content);
+    });
+};
 
-      if (projects) {
-        return projects.filter((project) => {
-          return project.status === 'completed';
-        });
-      }
+const listProjectCompleated = (z, bundle) => {
+  let params = {};
+  if (bundle.inputData.projectName) {
+    params.projectName = bundle.inputData.projectName;
+  }
+  return listProject(z, bundle, params).then((projects) => {
+    let completedProjects = [];
+    if (projects.length > 0) {
+      completedProjects = projects.filter((project) => {
+        return project.status === 'completed';
+      });
+    }
+    if (completedProjects.length === 0) {
+      completedProjects = projectsDefault;
+    }
 
-      return projectsDefault;
+    return completedProjects;
+  })
+}
+
+const listProjectChoices = (z, bundle) => {
+  return listProject(z, bundle, {})
+    .then((projects) => { 
+      const projectNames = projects.reduce((names, project)=>{
+        names.push(project.name);
+        return names;
+      },[])
+      return {key: 'projectName', choices: projectNames, required: false, type: 'string', label: 'Project Name'}
     });
 };
 
@@ -41,10 +57,10 @@ module.exports = {
   operation: {
 
     inputFields: [
-      {key: 'projectName', type: 'string',  helpText: 'Enter project name(if you really know that project exist)', required: false}
+      listProjectChoices
     ],
 
-    perform: listProject,
+    perform: listProjectCompleated,
 
     outputFields: [
       {key: 'id', label: 'ID'},

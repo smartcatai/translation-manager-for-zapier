@@ -1,6 +1,6 @@
 {
   "name": "translation-manager-for-zapier",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "A Smartcat translation manager app for the Zapier platform.",
   "repository": "smartcatai/translation-manager-for-zapier",
   "homepage": "https://zapier.com/",
