@@ -48,10 +48,10 @@ const listProjectChoices = (z, bundle) => {
 module.exports = {
   key: 'completed_project',
 
-  noun: 'Completed Projects',
+  noun: 'Completed Project',
   display: {
-    label: 'Completed Projects With Polling',
-    description: 'Trigger when fount completed project.'
+    label: 'Project Completed',
+    description: 'Triggers when the status of a project changes to completed.'
   },
 
   operation: {

@@ -25,15 +25,16 @@ const auth = {
     },
     {
       key: 'api_login',
+      label: 'Account ID',
       type: 'string',
       required: true,
-      helpText: 'Smartcat account ID.'
+      helpText: 'Login to your Smartcat account and navigate to Settings > API to find your Account Id and API Key'
     },
     {
       key: 'api_password',
+      label: 'API Key',
       type: 'string',
-      required: true,
-      helpText: 'API key for identify'
+      required: true
     }
   ]
 };
