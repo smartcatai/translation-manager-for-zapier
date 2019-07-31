@@ -10,8 +10,8 @@ module.exports = {
   // for users. Zapier will put them into the UX.
   noun: 'Export',
   display: {
-    label: 'Create Export',
-    description: 'Creates a new Export(should be work with completed project trigger)'
+    label: 'Export Files',
+    description: 'Export translated files (works with the Completed Project trigger)'
   },
 
   // `operation` is where the business logic goes.
