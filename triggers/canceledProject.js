@@ -7,27 +7,27 @@ const listProjectCompleated = (z, bundle) => {
     params.projectName = bundle.inputData.projectName;
   }
   return project.list(z, bundle, params).then((projects) => {
-    let completedProjects = [];
+    let canceledProjects = [];
     if (projects.length > 0) {
-      completedProjects = projects.filter((project) => {
-        return project.status === 'completed';
+      canceledProjects = projects.filter((project) => {
+        return project.status === 'canceled';
       });
     }
-    if (completedProjects.length === 0) {
-      completedProjects = projectsDefault;
+    if (canceledProjects.length === 0) {
+      canceledProjects = projectsDefault;
     }
 
-    return completedProjects;
+    return canceledProjects;
   })
 }
 
 module.exports = {
-  key: 'completed_project',
+  key: 'canceled_project',
 
-  noun: 'Completed Project',
+  noun: 'Canceled Project',
   display: {
-    label: 'Project Completed',
-    description: 'Triggers when the status of a project changes to completed.'
+    label: 'Project Canceled',
+    description: 'Triggers when the status of a project changes to Canceled.'
   },
 
   operation: {
