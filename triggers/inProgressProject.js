@@ -22,12 +22,12 @@ const listProjectInProgress = (z, bundle) => {
 }
 
 module.exports = {
-  key: 'in_progress_project',
+  key: 'progress_project',
 
-  noun: 'In Project Project',
+  noun: 'Progress Project',
   display: {
-    label: 'Project in progress',
-    description: 'Triggers when the status of a project changes to In Project.'
+    label: 'Project in Progress',
+    description: 'Triggers when the status of a project changes to In Progress.'
   },
 
   operation: {
