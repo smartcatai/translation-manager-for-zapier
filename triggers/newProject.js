@@ -14,8 +14,8 @@ module.exports = {
 
   noun: 'New Project',
   display: {
-    label: 'Project New',
-    description: 'Triggers when create a new project.'
+    label: 'Project Created',
+    description: 'Triggers when a new project has been created.'
   },
 
   operation: {

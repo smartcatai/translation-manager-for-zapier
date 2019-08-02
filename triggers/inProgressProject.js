@@ -1,33 +1,33 @@
 const projectsDefault = require('../projects.json');
 const project = require('./_project');
 
-const listProjectCanceled = (z, bundle) => {
+const listProjectInProgress = (z, bundle) => {
   let params = {};
   if (bundle.inputData.projectName) {
     params.projectName = bundle.inputData.projectName;
   }
   return project.list(z, bundle, params).then((projects) => {
-    let canceledProjects = [];
+    let inProgressProjects = [];
     if (projects.length > 0) {
-      canceledProjects = projects.filter((project) => {
-        return project.status === 'canceled';
+      inProgressProjects = projects.filter((project) => {
+        return project.status === 'inprogress';
       });
     }
-    if (canceledProjects.length === 0) {
-      canceledProjects = projectsDefault;
+    if (inProgressProjects.length === 0) {
+      inProgressProjects = projectsDefault;
     }
 
-    return canceledProjects;
+    return inProgressProjects;
   })
 }
 
 module.exports = {
-  key: 'canceled_project',
+  key: 'in_progress_project',
 
-  noun: 'Canceled Project',
+  noun: 'In Project Project',
   display: {
-    label: 'Project Canceled',
-    description: 'Triggers when the status of a project changes to Canceled.'
+    label: 'Project in progress',
+    description: 'Triggers when the status of a project changes to In Project.'
   },
 
   operation: {
@@ -36,7 +36,7 @@ module.exports = {
       project.listChoices
     ],
 
-    perform: listProjectCanceled,
+    perform: listProjectInProgress,
 
     outputFields: [
       {key: 'id', label: 'ID'},
