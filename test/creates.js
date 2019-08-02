@@ -1,4 +1,5 @@
 const should = require('should');
+const assert = require('assert');
 
 const zapier = require('zapier-platform-core');
 
@@ -53,6 +54,40 @@ describe('creates', () => {
         .then(result => {
             console.log(result);
             should(result.documentIds[0]).eql('a882f5712d0c9d1bb54f2504_9');
+
+            done();
+        })
+        .catch(done);
+    });
+  });
+
+  describe('create job action', () => {
+    it('should create job', (done) => {
+        const bundle = {
+          authData: {
+            api_server: 'europe',
+            api_login: '40c7d5b2-da26-4b36-84f1-8305b3aadb03',
+            api_password: '32_xBrADOZXaB1B1JznYw0GAe8rw'
+          },
+          inputData: {
+            email : "test@example.com",
+            firstName : "test",
+            lastName : "test",
+            serviceType : "test",
+            jobDescription : "test",
+            unitsType : "pages",
+            unitsAmount : 1,
+            pricePerUnit : 1,
+            currency : "uSD",
+            externalNumber : "233rwesdf3434"
+          }
+        };
+
+        appTester(App.creates.create_job.operation.perform, bundle)
+        .then(result => {
+            if (result.id === undefined){
+              assert.ok(false)
+            }
 
             done();
         })
