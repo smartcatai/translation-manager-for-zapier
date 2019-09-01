@@ -12,7 +12,7 @@ const listProjectCompleated = (z, bundle) => {
 module.exports = {
   key: 'new_project',
 
-  noun: 'New Project',
+  noun: 'Created Project',
   display: {
     label: 'Project Created',
     description: 'Triggers when a new project has been created.'

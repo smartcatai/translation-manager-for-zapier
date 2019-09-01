@@ -10,7 +10,7 @@ const listProjectInProgress = (z, bundle) => {
     let inProgressProjects = [];
     if (projects.length > 0) {
       inProgressProjects = projects.filter((project) => {
-        return project.status === 'inprogress';
+        return project.status.toLowerCase() === 'inprogress';
       });
     }
     if (inProgressProjects.length === 0) {
@@ -24,7 +24,7 @@ const listProjectInProgress = (z, bundle) => {
 module.exports = {
   key: 'progress_project',
 
-  noun: 'Progress Project',
+  noun: 'In Progress Project',
   display: {
     label: 'Project in Progress',
     description: 'Triggers when the status of a project changes to In Progress.'
